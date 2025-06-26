@@ -227,7 +227,7 @@ int main(int argc, const char* argv[]){
 		if(argc > 2){cout<<"Too many arguments"<<endl;return 0;
 		} else if(argv[1] == "-h" || argv[1] == "--help"){
 			cout<<
-			"Simple Game\n"
+			"Simple MTet Game\n"
 			"  Controls:\n"
 			"    h/j/l, Arrow Left/Down/Right, n/e/o - Move left/down/right\n"
 			"    p,ESC - is_Paused/Unpause\n"

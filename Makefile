@@ -1,22 +1,18 @@
-NAME=tetris
+NAME=mtet
 CC=g++
 CFLAGS=-O2 -pthread -s
 
-b:
+build:
 	$(CC) $(CFLAGS) -o $(NAME) main.cpp
-r:
-	alacritty -e ./$(NAME)
 
-br: b r
-
-install: b
-	sudo mkdir -p /bin
-	sudo mkdir -p /usr/bin
-	sudo cp -f $(NAME) /bin
-	sudo cp -f $(NAME) /usr/bin
-	sudo chmod 755 /bin/$(NAME)
-	sudo chmod 755 /usr/bin/$(NAME)
+install: build
+	mkdir -p /bin
+	mkdir -p /usr/bin
+	cp -f $(NAME) /bin
+	cp -f $(NAME) /usr/bin
+	chmod 755 /bin/$(NAME)
+	chmod 755 /usr/bin/$(NAME)
 
 uninstall:
-	sudo rm -f /bin/$(NAME)
-	sudo rm -f /usr/bin/$(NAME)
+	rm -f /bin/$(NAME)
+	rm -f /usr/bin/$(NAME)

@@ -1,5 +1,6 @@
 /*
-    "tetris" is a simple tetris game, and an example of handling basic terminal input/output on linux, without ncurses.
+	"mtet" is a simple game, and an example of handling basic terminal
+	input/output on Linux, without ncurses.
     Copyright (C) 2021  MMqd
 
     This program is free software: you can redistribute it and/or modify
@@ -98,7 +99,7 @@ string leftPadding = "";
 char input_raw[3]{0};	//Input sequences, input_raw[0] stores the character pressed
 
 //Gets the user's local directory to store highscore
-const string highscoreFile = string(getpwuid(getuid())->pw_dir) + "/.local/share/Tetris highscore";
+const string highscoreFile = string(getpwuid(getuid())->pw_dir) + "/.local/share/mtet highscore";
 
 //Stores the initial state of the terminal, which is reverted to when the program is closed
 struct termios old;
@@ -226,7 +227,7 @@ int main(int argc, const char* argv[]){
 		if(argc > 2){cout<<"Too many arguments"<<endl;return 0;
 		} else if(argv[1] == "-h" || argv[1] == "--help"){
 			cout<<
-			"Simple Tetris Game\n"
+			"Simple Game\n"
 			"  Controls:\n"
 			"    h/j/l, Arrow Left/Down/Right, n/e/o - Move left/down/right\n"
 			"    p,ESC - is_Paused/Unpause\n"
@@ -347,7 +348,6 @@ int main(int argc, const char* argv[]){
 					Tmp<<highscore;
 					Tmp.close();
 				}
-				score = 0;
 			}
 
 		} else if(!is_Paused){//Game over
@@ -368,7 +368,7 @@ int main(int argc, const char* argv[]){
 						nextTetromino[i][j] = tetrominoShapes[nextTetrominoID][j][i];
 					}
 				}
-				S = false;is_GameOver = false;
+				S = false;is_GameOver = false;score = 0;
 			}//Input
 		}
 		if(input[0] == ' '){is_Paused = false; draw = true;}
@@ -424,8 +424,8 @@ int main(int argc, const char* argv[]){
 				switch(i){
 					case 0:drawbuffer += "│            │";break;
 					case 5:drawbuffer += "├────────────┘";break;
-					case 7:drawbuffer += "│ score: " + to_string(score);break;
-					case 8:drawbuffer += "│ High score: " + to_string(highscore);break;
+					case 7:drawbuffer += "│ Score: " + to_string(score) + "\e[K";break;
+					case 8:drawbuffer += "│ High Score: " + to_string(highscore) + "\e[K";break;
 					default:drawbuffer += "│";break;
 				}
 				drawbuffer += '\n';

@@ -19,6 +19,6 @@ It contains examples of how to:
 **Note:** that the screen is overwritten and not cleared, to clear a character it is necessary to overwrite it with a space.
 
 ## Controls
-* h/j/l, Arrow Left/Down/Right, or n/e/o - Move left/down/right
+* h/j/k/l, Arrow Left/Down/Up/Right, or n/e/i/o - Move left/Move down/Rotate/Move right
 * p, ESC - pause/unpause
 * SPACE - Unpause/Restart game after game over
